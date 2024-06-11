@@ -1,4 +1,6 @@
 
+dropdownOpen = false;
+var lastNav;
 let draggables = document.querySelectorAll(".result");
 
 // Loop over the collection
@@ -8,13 +10,8 @@ draggables.forEach(function(elmnt){
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
+  elmnt.onmousedown = dragMouseDown;
+  
 
   function dragMouseDown(e) {
     elmnt.style.position = "absolute";
@@ -70,3 +67,52 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+      const button = dropdown.querySelector('.dropbtn');
+      const content = dropdown.querySelector('.dropdown-content');
+
+      button.addEventListener('click', (event) => {
+        
+        // If we're pressing another dropbox while is open hide the open one.
+        if (event.target.matches('.dropbtn') && dropdownOpen == true) {
+          lastNav.classList.toggle('show');
+          dropdownOpen = false;
+        }
+        
+        lastNav = content;
+        dropdownOpen = true;
+        content.classList.toggle('show');
+      });
+  });
+
+  // Close the dropdown if the user clicks outside of it
+  window.addEventListener('click', (event) => {
+      if (!event.target.matches('.dropbtn') && !event.target.matches('.criteriaElement')) {
+          document.querySelectorAll('.dropdown-content').forEach(content => {
+              if (content.classList.contains('show')) {
+                dropdownOpen = false;
+                content.classList.toggle('show');
+              }
+          });
+      }
+  });
+});
+
+
+// function filterFunction() {
+//   var input, filter, ul, li, a, i;
+//   input = document.getElementById("myInput");
+//   filter = input.value.toUpperCase();
+//   div = document.getElementById("myDropdown");
+//   a = div.getElementsByTagName("a");
+//   for (i = 0; i < a.length; i++) {
+//     txtValue = a[i].textContent || a[i].innerText;
+//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//       a[i].style.display = "";
+//     } else {
+//       a[i].style.display = "none";
+//     }
+//   }
+// }
