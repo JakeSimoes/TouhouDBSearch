@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="banner">
+   <h1> Touhou Music Explorer</h1>
+</div>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="criterabar">
+    <ul class="barlist">
+        <div class="dropdown">
+          <button class="dropbtn">Name</button>
+          <div id="myDropdown" class="dropdown-content">
+            <input class="criteriaElement" type="text" placeholder="Search.." id="name" autocomplete="off">
+            <div id="results5"></div>
+          </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Genre</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input class="criteriaElement" type="text" placeholder="Search.." id="genre" autocomplete="off">
+              <div id="results"></div>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">OST</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input class="criteriaElement" type="text" placeholder="Search.." id="ost" autocomplete="off">
+              <div id="results2"></div>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Circle</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input class="criteriaElement" type="text" placeholder="Search.." id="circle" autocomplete="off">
+              <div id="results3"></div>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Artist</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input class="criteriaElement" type="text" placeholder="Search.." id="artist" autocomplete="off">
+              <div id="results4"></div>
+            </div>
+          </div>
+      </ul>
+ </div>
+
+<div class="overlay", id="overlay">
+  <div id="descBar"><h1 id="albumName">GEMINISM</h1> <h1 id="aboutTitle">About</h1> <h1>Tracks</h1> <button id="closeOverlay">X</button></div>
+  <img src="{{ url_for('static', filename='img.jpg') }}"></img>
+  <div class="overlayDesc">
+    <ul id="albumInfo"></ul>
+  </div>
+  <div class="overlayDesc">
+    <ul id="tracksInfo"></ul>
+  </div>
+</div>
+
+ 
+<div class="resultBox" id="resultBox"></div>
+
+ <div class="footer"> 
+    <h2>Jake Simoes </h2>
+    <a href="https://github.com/JakeSimoes" style="display: flex;"><img src="{{ url_for('static', filename='git.png') }}" style="height:1vmax;"></img></a>
+</div>
+{% endblock %}
