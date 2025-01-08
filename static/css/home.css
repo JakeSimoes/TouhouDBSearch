@@ -88,7 +88,8 @@ body {
   
   padding-left: 0px;
   padding-right: 10px;
-  width: 250px;
+  max-width: 250px;
+  height: 250px;
 }
 
 .resultBox h3 {
