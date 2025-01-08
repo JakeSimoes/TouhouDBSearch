@@ -7,7 +7,7 @@ on:
       - main
 jobs:
   deploy:
-    name: Deploy project with Nginx
+    name: Deploy project with Gunicorn
     permissions:
       deployments: write
     runs-on: ubuntu-latest
@@ -37,11 +37,8 @@ jobs:
           port: 22
           script: |
             git config --global url."https://${{ secrets.PERSONAL_GITHUB_TOKEN }}:@github.com".insteadOf "https://github.com"
-            cd chatg/
+            cd THMDB/TouhouDBSearch/
             git pull origin dev-branch
-            npm ci
-            npm run frontend
-            pm2 restart chatg --update-env
       - name: Update deployment Status (success)
         if: success()
         uses: chrnorm/deployment-status@v2
