@@ -17,13 +17,13 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-      - name: Create GitHub deployment
-        uses: chrnorm/deployment-action@v2
-        id: deployment
-        with:
-          token: '${{ github.token }}'
-          environment-url: ${{ vars.MY_APP }}
-          environment: production
+#      - name: Create GitHub deployment
+#        uses: chrnorm/deployment-action@v2
+#        id: deployment
+#        with:
+#          token: '${{ github.token }}'
+#          environment-url: ${{ vars.MY_APP }}
+#          environment: production
       - name: Set up SSH Key and Deploy my App on Server
         # run: |
         uses: appleboy/ssh-action@master
@@ -38,7 +38,7 @@ jobs:
           script: |
             git config --global url."https://${{ secrets.PERSONAL_GITHUB_TOKEN }}:@github.com".insteadOf "https://github.com"
             cd THMDB/TouhouDBSearch/
-            git pull origin dev-branch
+            git pull origin main
       - name: Update deployment Status (success)
         if: success()
         uses: chrnorm/deployment-status@v2
