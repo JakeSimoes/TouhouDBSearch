@@ -25,4 +25,5 @@ jobs:
             git config --global url."https://${{ secrets.PERSONAL_GITHUB_TOKEN }}:@github.com".insteadOf "https://github.com"
             cd /mnt/data/THMDB
             git checkout main
-            git pull
+            git pull 
+            sudo systemctl restart THMDB.service
